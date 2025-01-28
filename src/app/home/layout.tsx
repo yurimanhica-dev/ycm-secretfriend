@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import { Toaster } from "@/components/ui/toaster";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -18,6 +19,7 @@ export default async function HomeLayout({
     <div>
       <Header />
       {children}
+      <Toaster />
     </div>
   );
 }

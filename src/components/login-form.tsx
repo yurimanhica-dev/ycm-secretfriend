@@ -2,6 +2,7 @@
 
 import { LoginState, login } from "@/app/(auth)/login/actions";
 import { AlertCircle, CheckCircle, Loader } from "lucide-react";
+import Link from "next/link";
 import { useActionState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { Button } from "./ui/button";
@@ -14,6 +15,7 @@ import {
 } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { Separator } from "./ui/separator";
 
 export default function LoginForm() {
   const [state, fromAction, pending] = useActionState<LoginState, FormData>(
@@ -27,7 +29,9 @@ export default function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm px-4">
       <CardHeader>
-        <CardTitle className="text-2xl  text-center mb-2">Login</CardTitle>
+        <CardTitle className="text-2xl  text-center mb-2 cursor-pointer">
+          Magic Link
+        </CardTitle>
         <CardDescription>
           Digite seu email para receber o link de login
         </CardDescription>
@@ -78,6 +82,15 @@ export default function LoginForm() {
             Login
           </Button>
         </form>
+        <div className="mt-4 space-y-1.5 text-sm text-gray-500">
+          <div className="text-center hover:text-primary">
+            <Link href="/forgot-password">Esqueceu a senha?</Link>
+          </div>
+          <Separator />
+          <div className="text-center hover:text-primary">
+            <Link href="/register">Criar uma conta</Link>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
