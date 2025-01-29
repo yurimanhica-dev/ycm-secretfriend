@@ -1,6 +1,8 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+import { Resend } from "resend";
 
 export type createGroupState = {
   success: null | boolean;
@@ -79,7 +81,19 @@ export async function createGroup(
       message: "Ocorreu um erro ao atribuir os participantes ao grupo",
     };
   }
-  // redirect(`app/groups/${newGroup.id}`);
+
+  const { error: errorResend } = await sendEmailToParticipants(
+    drawnParticipants,
+    groupName as string
+  );
+
+  if (errorResend) {
+    return {
+      success: false,
+      message: errorResend,
+    };
+  }
+  redirect(`/app/groups/${newGroup.id}`);
 }
 
 type Participant = {
@@ -117,4 +131,42 @@ function drawGroup(participants: Participant[]) {
   });
 
   return results;
+}
+
+async function sendEmailToParticipants(
+  participants: Participant[],
+  groupName: string
+) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
+  try {
+    await Promise.all(
+      participants.map((participant) => {
+        resend.emails.send({
+          from: "delivered@resend.dev",
+          to: participant.email,
+          subject: `🎁 Sorteio de Amigo Secreto - ${groupName} 🎉`,
+          html: `
+        <div style="font-family: Alexandria, sans-serif; text-align: center; background-color: #f9f9f9; padding: 20px;">
+          <div style="background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); display: inline-block;">
+            <h1 style="color: #e63946;">🎁 Sorteio de Amigo Secreto 🎉</h1>
+            <p>Olá, <strong>${participant.name}</strong>! 🙌</p>
+            <p>Você está participando do Amigo Secreto do grupo <strong>"${groupName}"</strong>!</p>
+            <p>O grande momento chegou! O seu amigo secreto é...</p>
+            <p style="font-size: 20px; font-weight: bold; color: #1d3557;">🎊 <strong>${
+              participants.find((p) => p.id === participant.assigned_to)?.name
+            }</strong> 🎊</p>
+            <p>Agora é só preparar um presente especial e guardar segredo até a revelação! 🤐🎁</p>
+            <p style="margin-top: 20px; font-size: 14px; color: #555;">Boa sorte e divirta-se! ❤️</p>
+          </div>
+        </div>
+      `,
+        });
+      })
+    );
+
+    return { error: null };
+  } catch {
+    return { error: "Ocorreu um erro ao enviar o email" };
+  }
 }

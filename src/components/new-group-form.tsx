@@ -49,6 +49,7 @@ export default function NewGroupForm({
     newParticipants[index][field] = value;
     setParticipants(newParticipants);
   }
+
   function removeParticipant(index: number) {
     setParticipants(participants.filter((_, i) => i !== index));
   }
