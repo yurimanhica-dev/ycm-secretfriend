@@ -16,7 +16,7 @@ export default async function HomeLayout({
     redirect("/login");
   }
   return (
-    <div>
+    <div className="mx-auto w-full">
       <Header />
       {children}
       <Toaster />

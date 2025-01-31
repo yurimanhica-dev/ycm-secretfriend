@@ -65,6 +65,7 @@ export default function NewGroupForm({
         description: state.message,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   return (
@@ -103,8 +104,26 @@ export default function NewGroupForm({
                     onChange={(e) => {
                       updateParticipants(index, "name", e.target.value);
                     }}
-                    placeholder="Digite o nome da pessoa"
+                    placeholder={
+                      participant.email === loggedUser?.email
+                        ? "Digite o teu nome"
+                        : "Digite o email do participante"
+                    }
                     required
+                    onBlur={() => {
+                      // Verifica se o nome é único
+                      const isNameUnique = !participants.some(
+                        (p, i) => p.name === participant.name && i !== index
+                      );
+
+                      if (!isNameUnique) {
+                        toast({
+                          title: `"${participant.name}, já existe"`,
+                          description: "Não é permitida a duplicação de nomes.",
+                        });
+                        updateParticipants(index, "name", "");
+                      }
+                    }}
                   />
                 </div>
 
@@ -120,7 +139,7 @@ export default function NewGroupForm({
                     }}
                     className="readonly: text-muted-foreground mt-2"
                     readOnly={participant.email === loggedUser?.email}
-                    placeholder="Digite o email da pessoa"
+                    placeholder="Digite o email do participante"
                     required
                   />
                 </div>

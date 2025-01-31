@@ -1,7 +1,7 @@
 "use client";
 
 import { LoginState, login } from "@/app/(auth)/login/actions";
-import { AlertCircle, CheckCircle, Loader } from "lucide-react";
+import { AlertCircle, CheckCircle, Gift, Loader } from "lucide-react";
 import Link from "next/link";
 import { useActionState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
@@ -29,17 +29,18 @@ export default function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm px-4">
       <CardHeader>
-        <CardTitle className="text-2xl  text-center mb-2 cursor-pointer">
-          Magic Link
+        <CardTitle className="text-2xl flex flex-col items-center justify-center gap-2 text-center mb-2">
+          <Gift className="h-12 w-12 text-primary" />
+          <span className="font-bold">Amigo Secreto</span>
         </CardTitle>
         <CardDescription>
-          Digite seu email para receber o link de login
+          Digite seu email para receber o link início de sessão.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form action={fromAction}>
-          <div className="flex flex-col space-y-2 mb-4">
-            <Label htmlFor="email">Email</Label>
+          <div className="flex flex-col space-y-2 mb-2">
+            <Label htmlFor="email">Email:</Label>
             <Input
               id="email"
               name="email"
@@ -55,7 +56,7 @@ export default function LoginForm() {
                 <div>
                   <AlertTitle>Email enviado com sucesso!</AlertTitle>
                   <AlertDescription>
-                    Confira o seu inbox para acessar o link do login.
+                    Confira o seu inbox para acessar o link do inicio de sessão.
                   </AlertDescription>
                 </div>
               </div>
@@ -84,11 +85,11 @@ export default function LoginForm() {
         </form>
         <div className="mt-4 space-y-1.5 text-sm text-gray-500">
           <div className="text-center hover:text-primary">
-            <Link href="/forgot-password">Esqueceu a senha?</Link>
+            <Link href="/login">Esqueceu a senha?</Link>
           </div>
           <Separator />
           <div className="text-center hover:text-primary">
-            <Link href="/register">Criar uma conta</Link>
+            <Link href="/login">Criar uma conta</Link>
           </div>
         </div>
       </CardContent>

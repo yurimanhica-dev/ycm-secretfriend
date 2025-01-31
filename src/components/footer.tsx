@@ -17,8 +17,8 @@ export default function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout} className="text-red-500 font-medium">
-      Sair
+    <button onClick={handleLogout} className="font-medium">
+      Terminar a sessão
     </button>
   );
 }

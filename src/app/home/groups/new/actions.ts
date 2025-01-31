@@ -55,8 +55,6 @@ export async function createGroup(
     email: emails[index],
   }));
 
-  console.log(participants);
-
   const { data: createdParticipants, error: errorParticipants } = await supabase
     .from("participants")
     .insert(participants)
@@ -93,7 +91,7 @@ export async function createGroup(
       message: errorResend,
     };
   }
-  redirect(`/app/groups/${newGroup.id}`);
+  redirect(`/home/groups/${newGroup.id}`);
 }
 
 type Participant = {
@@ -150,7 +148,7 @@ async function sendEmailToParticipants(
         <div style="font-family: Alexandria, sans-serif; text-align: center; background-color: #f9f9f9; padding: 20px;">
           <div style="background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); display: inline-block;">
             <h1 style="color: #e63946;">🎁 Sorteio de Amigo Secreto 🎉</h1>
-            <p>Olá, <strong>${participant.name}</strong>! 🙌</p>
+            <h2>Olá, <strong>${participant.name}</strong>! 🙌</h2>
             <p>Você está participando do Amigo Secreto do grupo <strong>"${groupName}"</strong>!</p>
             <p>O grande momento chegou! O seu amigo secreto é...</p>
             <p style="font-size: 20px; font-weight: bold; color: #1d3557;">🎊 <strong>${

@@ -21,9 +21,9 @@ export default function RegisterForm() {
           <CardTitle className="text-2xl">Cadastro</CardTitle>
           <CardDescription>
             <div className="flex items-center text-center justify-center">
-              Bem-vindo ao Amigo Secreto!! 🌟
+              Bem-vindo ao Amigo Secreto!!
             </div>
-            Faça o seu cadastro, seus amigos o esperam. 🥹
+            Faça o seu cadastro, seus amigos o esperam.
           </CardDescription>
         </CardHeader>
         <div className="flex items-center justify-center gap-3 ">

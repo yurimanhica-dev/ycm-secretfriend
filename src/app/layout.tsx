@@ -1,32 +1,22 @@
+import "@/app/globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Alexandria } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const alexandria = Alexandria({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Amigo Secreto",
-  description: "App para sortear amigo oculto.",
+  title: "Meu Next.js App",
+  description: "Aplicação padrão com Next.js 13+",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark bg-background`}
-      >
+    <html lang="pt">
+      <body className={`${alexandria.className} dark antialiased`}>
         {children}
       </body>
     </html>
