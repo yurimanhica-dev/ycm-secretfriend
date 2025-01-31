@@ -31,7 +31,7 @@ export default function LoginForm() {
       <CardHeader>
         <CardTitle className="text-2xl flex flex-col items-center justify-center gap-2 text-center mb-2">
           <Gift className="h-12 w-12 text-primary" />
-          <span className="font-bold">Amigo Secreto</span>
+          <span className="font-bold">Secret Friend</span>
         </CardTitle>
         <CardDescription>
           Digite seu email para receber o link início de sessão.

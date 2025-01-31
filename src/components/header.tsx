@@ -21,7 +21,7 @@ export default async function Header() {
             className="text-2xl font-bold flex items-center gap-2"
           >
             <Gift className="h-6 w-6 text-primary" />
-            <span className="font-bold">Amigo Secreto</span>
+            <span className="font-bold">Secret Friend</span>
           </Link>
 
           <nav className="flex items-center space-x-8">

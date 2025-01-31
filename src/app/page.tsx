@@ -14,7 +14,7 @@ export default async function Home() {
     <>
       <Header />
       <div className="flex flex-col items-center justify-center h-[90vh]">
-        <h1 className="text-4xl font-bold">Bem-vindo ao Amigo Secreto.</h1>
+        <h1 className="text-4xl font-bold">Bem-vindo ao Secret Friend.</h1>
         <p className="text-lg mt-4">
           Conta pertencente ao email: {data.user.email}
         </p>
