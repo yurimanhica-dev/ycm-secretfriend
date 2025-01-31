@@ -5,8 +5,8 @@ import { Alexandria } from "next/font/google";
 const alexandria = Alexandria({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Meu Next.js App",
-  description: "Aplicação padrão com Next.js 13+",
+  title: "Secret Friend",
+  description: "Secret Friend",
 };
 
 export default function RootLayout({
