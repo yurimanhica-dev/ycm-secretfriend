@@ -1,5 +1,6 @@
 import "@/app/globals.css";
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import { Alexandria } from "next/font/google";
 
 const alexandria = Alexandria({ subsets: ["latin"] });
@@ -16,8 +17,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt">
-      <body className={`${alexandria.className} dark antialiased`}>
-        {children}
+      <body className={`${alexandria.className} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

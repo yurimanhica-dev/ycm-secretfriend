@@ -3,6 +3,7 @@ import { Gift, UsersRound } from "lucide-react";
 import Link from "next/link";
 import LogoutButton from "./footer";
 import { Button } from "./ui/button";
+import { ModeToggle } from "./ui/modetogle";
 
 export default async function Header() {
   const supabase = await createClient();
@@ -28,7 +29,7 @@ export default async function Header() {
             <Button>
               <Link
                 href={`/home/groups/`}
-                className=" text-foreground text-sm flex gap-2 items-center"
+                className="text-sm flex gap-2 items-center light:text-white"
               >
                 Meus grupos
                 <UsersRound className="h-6 w-6" />
@@ -37,12 +38,15 @@ export default async function Header() {
             <Button
               asChild
               variant="outline"
-              className="bg-transparent border-[1.5px] border-white"
+              className="bg-transparent border-[1.5px] light:border-zinc-800 border-white "
             >
               <Link href="/home/groups/new">Novo grupo</Link>
             </Button>
           </nav>
-          <LogoutButton />
+          <div className="flex gap-9 ">
+            <LogoutButton />
+            <ModeToggle />
+          </div>
         </div>
       </div>
     </header>
